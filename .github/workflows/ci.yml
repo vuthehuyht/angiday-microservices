@@ -6,8 +6,6 @@ on:
   pull_request:
     branches:
       - 'main'
-    types:
-      - closed
 
 env:
   DATABASE_TEST_URL: jdbc:mysql://localhost:3306/test?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
@@ -90,5 +88,5 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: "{{defaultContext}}:${{ matrix.dir }}"
-          push: ${{ github.event.pull_request.merged == true }}
+          push: ${{ github.event.pull_request.merged == true && github.event.action == 'closed' }}
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/angiday-${{ matrix.dir }}:${{ github.sha }}
