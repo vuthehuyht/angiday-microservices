@@ -87,5 +87,5 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: "{{defaultContext}}:${{ matrix.dir }}"
-          push: true
+          push: github.event.pull_request.merged == true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/angiday-${{ matrix.dir }}:${{ github.sha }}
