@@ -1,0 +1,34 @@
+services:
+  mysql:
+    container_name: mysql
+    image: mysql:latest
+    restart: always
+    networks:
+      - angiday-network
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: angiday_dev
+    healthcheck:
+      test: [ "CMD-SHELL", "mysqladmin ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  user-service:
+    container_name: user-service
+    build:
+      context: user-service/
+      dockerfile: Dockerfile
+    restart: always
+    networks:
+      - angiday-network
+    depends_on:
+      - mysql
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env.dev
+
+networks:
+  angiday-network:
+    driver: bridge
