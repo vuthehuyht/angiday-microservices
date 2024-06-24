@@ -64,6 +64,8 @@ jobs:
         working-directory: ${{matrix.dir}}
 
   docker-build:
+    needs:
+      - test
     runs-on: ubuntu-latest
     strategy:
       matrix: { dir: [
