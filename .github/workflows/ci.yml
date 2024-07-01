@@ -30,6 +30,8 @@ jobs:
       - name: Build with Maven
         run: mvn -B clean install --file pom.xml -DskipTests
         working-directory: ${{matrix.dir}}
+      - name: Run check style
+        run: mvn checkstyle:check
 
   test:
     services:
