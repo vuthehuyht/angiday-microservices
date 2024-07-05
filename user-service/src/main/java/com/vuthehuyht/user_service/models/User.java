@@ -6,6 +6,7 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Setter
@@ -17,8 +18,8 @@ import java.util.UUID;
 @Table(name = "user")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "username", unique = true, nullable = false)
     private String username;
@@ -47,4 +48,7 @@ public class User {
 
     @Column(name = "updated_at", insertable = false)
     private LocalDateTime updatedAt;
+
+    @OneToMany(mappedBy = "user")
+    private List<Token> tokens;
 }

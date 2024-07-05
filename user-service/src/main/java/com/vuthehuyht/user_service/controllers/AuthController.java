@@ -1,7 +1,9 @@
 package com.vuthehuyht.user_service.controllers;
 
+import com.vuthehuyht.user_service.requests.LoginRequest;
 import com.vuthehuyht.user_service.requests.RegisterRequest;
 import com.vuthehuyht.user_service.responses.ApiResponse;
+import com.vuthehuyht.user_service.responses.LoginResponse;
 import com.vuthehuyht.user_service.responses.RegisterResponse;
 import com.vuthehuyht.user_service.services.AuthService;
 import jakarta.validation.Valid;
@@ -28,6 +30,15 @@ public class AuthController {
         return ApiResponse.<RegisterResponse>builder()
                 .code(HttpStatus.OK.value())
                 .data(authService.register(request))
+                .build();
+    }
+
+    @PostMapping(path = "/login")
+    ApiResponse<LoginResponse> login(@Valid @RequestBody LoginRequest request) {
+        log.info("Handling user login");
+        return ApiResponse.<LoginResponse>builder()
+                .code(HttpStatus.OK.value())
+                .data(authService.login(request))
                 .build();
     }
 }

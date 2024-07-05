@@ -20,6 +20,12 @@ public enum ErrorCode {
 
     // Exception
     USERNAME_EXIST(600, "Username {} exist", HttpStatus.BAD_REQUEST),
+    TOKEN_NOT_SUPPORT(601, "Token not support", HttpStatus.UNAUTHORIZED),
+    TOKEN_INVALID(602, "Token is invalid format", HttpStatus.UNAUTHORIZED),
+    TOKEN_EXPIRED(603, "Token is expired", HttpStatus.UNAUTHORIZED),
+    UNKNOWN_ERROR(604, "Unknown error", HttpStatus.UNAUTHORIZED),
+    USERNAME_NOTFOUND(605, "Username not found", HttpStatus.NOT_FOUND),
+    USERNAME_PASSWORD_WRONG(606, "Username or password wrong", HttpStatus.BAD_REQUEST)
     ;
 
     ErrorCode(Integer code, String message, HttpStatusCode statusCode) {
