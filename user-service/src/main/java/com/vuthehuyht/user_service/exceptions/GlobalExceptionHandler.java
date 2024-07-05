@@ -64,6 +64,66 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(errorCode.getStatusCode()).body(apiResponse);
     }
 
+    @ExceptionHandler(TokenExpiredException.class)
+    ResponseEntity<ApiResponse> handleTokenExpiredException(TokenExpiredException e) {
+        ErrorCode errorCode = e.getErrorCode();
+
+        ApiResponse apiResponse = new ApiResponse();
+        apiResponse.setCode(errorCode.getCode());
+        apiResponse.setMessage(errorCode.getMessage());
+
+        log.error("TokenExpiredException {}", e.getMessage());
+        return ResponseEntity.status(errorCode.getStatusCode()).body(apiResponse);
+    }
+
+    @ExceptionHandler(TokenInvalidException.class)
+    ResponseEntity<ApiResponse> handleTokenInvalidException(TokenInvalidException e) {
+        ErrorCode errorCode = e.getErrorCode();
+
+        ApiResponse apiResponse = new ApiResponse();
+        apiResponse.setCode(errorCode.getCode());
+        apiResponse.setMessage(errorCode.getMessage());
+
+        log.error("TokenInvalidException {}", e.getMessage());
+        return ResponseEntity.status(errorCode.getStatusCode()).body(apiResponse);
+    }
+
+    @ExceptionHandler(TokenNotSupportException.class)
+    ResponseEntity<ApiResponse> handleTokenNotSupportException(TokenNotSupportException e) {
+        ErrorCode errorCode = e.getErrorCode();
+
+        ApiResponse apiResponse = new ApiResponse();
+        apiResponse.setCode(errorCode.getCode());
+        apiResponse.setMessage(errorCode.getMessage());
+
+        log.error("TokenNotSupportException {}", e.getMessage());
+        return ResponseEntity.status(errorCode.getStatusCode()).body(apiResponse);
+    }
+
+    @ExceptionHandler(UnknownErrorException.class)
+    ResponseEntity<ApiResponse> handleUnknownErrorException(UnknownErrorException e) {
+        ErrorCode errorCode = e.getErrorCode();
+
+        ApiResponse apiResponse = new ApiResponse();
+        apiResponse.setCode(errorCode.getCode());
+        apiResponse.setMessage(errorCode.getMessage());
+
+        log.error("UnknownErrorException {}", e.getMessage());
+        return ResponseEntity.status(errorCode.getStatusCode()).body(apiResponse);
+    }
+
+    @ExceptionHandler(UsernameNotFoundException.class)
+    ResponseEntity<ApiResponse> handleUsernameNotFoundException(UsernameNotFoundException e) {
+        ErrorCode errorCode = e.getErrorCode();
+
+        ApiResponse apiResponse = new ApiResponse();
+        apiResponse.setCode(errorCode.getCode());
+        apiResponse.setMessage(errorCode.getMessage());
+
+        log.error("UsernameNotFoundException {}", e.getMessage());
+        return ResponseEntity.status(errorCode.getStatusCode()).body(apiResponse);
+    }
+
     private String mapAttribute(String message, Map<String, Object> attributes) {
         String minValue = String.valueOf(attributes.get(MIN_ATTRIBUTE));
         return message.replace("{" + MIN_ATTRIBUTE + "}", minValue);
