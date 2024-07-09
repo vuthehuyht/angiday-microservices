@@ -15,7 +15,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix: { dir: [
-        'user-service'
+        'user-service',
+        'api-gateway',
+        'eureka-service'
       ]}
     permissions:
       contents: read
