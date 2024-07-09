@@ -9,5 +9,6 @@ RUN ./mvnw clean install -DskipTests
 
 FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
-COPY --from=builder /app/target/*.jar user-service.jar
-ENTRYPOINT ["sh", "-c", "java -Dspring.profiles.active=dev -jar user-service.jar"]
+EXPOSE 8080
+COPY --from=builder /app/target/*.jar api-gateway.jar
+ENTRYPOINT ["sh", "-c", "java -Dspring.profiles.active=dev -jar api-gateway.jar"]
