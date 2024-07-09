@@ -9,5 +9,5 @@ RUN ./mvnw clean install -DskipTests
 
 FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
-COPY --from=builder /app/target/*.jar user-service.jar
-ENTRYPOINT ["sh", "-c", "java -Dspring.profiles.active=dev -jar user-service.jar"]
+COPY --from=builder /app/target/*.jar eureka-service.jar
+ENTRYPOINT ["sh", "-c", "java -Dspring.profiles.active=dev -jar eureka-service.jar"]

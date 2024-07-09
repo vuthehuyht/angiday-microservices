@@ -48,3 +48,17 @@ user-service/target/
 user-service/!.mvn/wrapper/maven-wrapper.jar
 user-service/!**/src/main/**/target/
 user-service/!**/src/test/**/target/
+
+### api gateway
+api-gateway/HELP.md
+api-gateway/target/
+api-gateway/!.mvn/wrapper/maven-wrapper.jar
+api-gateway/!**/src/main/**/target/
+api-gateway/!**/src/test/**/target/
+
+### Eureka service
+eureka-service/HELP.md
+eureka-service/target/
+eureka-service/!.mvn/wrapper/maven-wrapper.jar
+eureka-service/!**/src/main/**/target/
+eureka-service/!**/src/test/**/target/

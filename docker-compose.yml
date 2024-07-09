@@ -14,6 +14,32 @@ services:
       timeout: 5s
       retries: 10
 
+  eureka-service:
+    container_name: eureka-service
+    build:
+      context: eureka-service/
+      dockerfile: Dockerfile
+    restart: on-failure
+    networks:
+      - angiday-network
+    ports:
+      - "8761:8761"
+
+  api-gateway:
+    container_name: api-gateway
+    build:
+      context: api-gateway/
+      dockerfile: Dockerfile
+    restart: on-failure
+    networks:
+      - angiday-network
+    depends_on:
+      - eureka-service
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env.dev
+
   user-service:
     container_name: user-service
     build:
@@ -24,8 +50,7 @@ services:
       - angiday-network
     depends_on:
       - mysql
-    ports:
-      - "8080:8080"
+      - eureka-service
     env_file:
       - .env.dev
 
