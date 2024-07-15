@@ -1,8 +1,10 @@
 package com.vuthehuyht.userservice.controllers;
 
+import com.vuthehuyht.userservice.requests.IntrospectRequest;
 import com.vuthehuyht.userservice.requests.LoginRequest;
 import com.vuthehuyht.userservice.requests.RegisterRequest;
 import com.vuthehuyht.userservice.responses.ApiResponse;
+import com.vuthehuyht.userservice.responses.IntrospectResponse;
 import com.vuthehuyht.userservice.responses.LoginResponse;
 import com.vuthehuyht.userservice.responses.RegisterResponse;
 import com.vuthehuyht.userservice.services.AuthService;
@@ -39,6 +41,15 @@ public class AuthController {
         return ApiResponse.<LoginResponse>builder()
                 .code(HttpStatus.OK.value())
                 .data(authService.login(request))
+                .build();
+    }
+
+    @PostMapping(path = "/introspect")
+    ApiResponse<IntrospectResponse> introspect(@Valid @RequestBody IntrospectRequest request) {
+        log.info("Checking token validity");
+        return ApiResponse.<IntrospectResponse>builder()
+                .code(HttpStatus.OK.value())
+                .data(authService.introspect(request))
                 .build();
     }
 }
