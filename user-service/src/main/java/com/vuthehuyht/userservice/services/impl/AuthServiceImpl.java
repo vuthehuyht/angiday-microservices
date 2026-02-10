@@ -8,8 +8,10 @@ import com.vuthehuyht.userservice.models.Token;
 import com.vuthehuyht.userservice.models.User;
 import com.vuthehuyht.userservice.repositories.TokenRepository;
 import com.vuthehuyht.userservice.repositories.UserRepository;
+import com.vuthehuyht.userservice.requests.IntrospectRequest;
 import com.vuthehuyht.userservice.requests.LoginRequest;
 import com.vuthehuyht.userservice.requests.RegisterRequest;
+import com.vuthehuyht.userservice.responses.IntrospectResponse;
 import com.vuthehuyht.userservice.responses.LoginResponse;
 import com.vuthehuyht.userservice.responses.RegisterResponse;
 import com.vuthehuyht.userservice.services.AuthService;
@@ -79,5 +81,10 @@ public class AuthServiceImpl implements AuthService {
                 .build();
         tokenRepository.save(token);
         return new LoginResponse(accessToken);
+    }
+
+    @Override
+    public IntrospectResponse introspect(IntrospectRequest request) {
+        return new IntrospectResponse(jwtService.isValidToken(request.getToken()));
     }
 }

@@ -17,6 +17,7 @@ public enum ErrorCode {
     BIRTHDAY_REQUIRED(1006, "Birthday is required", HttpStatus.BAD_REQUEST),
     AT_LEAST_8_CHARACTERS(1007, "Password at least 8 characters", HttpStatus.BAD_REQUEST),
     DATE_FORMAT_ERROR(1008, "Date should be dd/MM/YYYY or dd/MM/yy", HttpStatus.BAD_REQUEST),
+    TOKEN_REQUIRED(1009, "Access token is required", HttpStatus.BAD_REQUEST),
 
     // Exception
     USERNAME_EXIST(600, "Username {} exist", HttpStatus.BAD_REQUEST),
